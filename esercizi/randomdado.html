@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+
+    <style>
+        
+        *{
+            transition: 0.5s linear;
+        }
+        
+        html{
+            background-color: none;
+            font-family: sans-serif;
+            font-size: 7vmin;
+            color: white;
+        }    
+            
+        #dado{
+            position: absolute;
+            width: 50vmin; height: 50vmin;
+            top: 50%; left: 50%;
+            transform:translate(-50%, -50%) ;
+            
+            background-color: white;
+            border-radius: 30%
+        }
+        
+        .container{
+            position: absolute;
+            width: 30vmin; height: 30vmin;
+            top: 50%; left: 50%;
+            transform:translate(-50%, -50%) ;
+        }
+        
+        .container div{
+            position: absolute;
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 100%;
+            text-align: center;
+            display: table-row;
+            align-content: center;
+            background-color: black;
+            pointer-events: none;
+        }
+        
+        p{
+            margin: 0;
+            align-content: center;
+        }
+        
+        .hidden{ opacity: 0}
+        
+        .uno{    }
+        
+        .due{    }
+        
+        .tre{    }
+        
+        .qua{    }
+
+        .cin{    }
+
+        .sei{    }
+
+        .ax{top: 0%;}
+            
+        .bx{bottom: 0%;}
+            
+        .sx{ left: 0%;}
+            
+        .dx{right: 0%;}
+        
+        .cx{left: 50%; transform: translate(-50%, 0%)}
+
+        .mx{top: 50%; transform: translate(0%, -50%)}
+        
+        .cx.mx{ transform: translate(-50%, -50%) }
+        
+    </style>
+    
+</head>
+<!--//////////////////////BODY    -->
+
+<body>
+    
+<div id="dado">
+    <div class="container">
+
+        <div class="ax sx uno" id=""><p></p></div>
+        <div class="ax dx due" id=""><p></p></div>
+        <div class="mx sx tre" id=""><p></p></div>
+        <div class="mx dx qua" id=""><p></p></div>
+        <div class="bx sx cin" id=""><p></p></div>
+        <div class="bx dx sei" id=""><p></p></div>
+
+    </div>
+</div>    
+    
+<!--//////////////////////JAVASCRIPT    -->
+    <script>
+        
+        var repe = 0;
+        
+        $(".container").click( function (){
+                
+            mixer()
+            
+        });
+                              
+        
+        function mixer() {
+            
+            
+            if ( repe == 10 ){
+                cubo()
+                repe = 0;
+            }
+            
+            else{
+                cubo()
+                repe++;
+                setTimeout( mixer, 80)    
+        }
+        
+        }
+        
+        
+        function cubo(){
+            
+            var x = getRandom();
+            
+            getRandom();
+                        
+            console.log(x);
+            
+            if( x == 1){
+                $(".uno").attr("class", "uno cx mx");
+                $(".due").attr("class", "due cx mx");
+                $(".tre").attr("class", "tre cx mx");
+                $(".qua").attr("class", "qua cx mx");
+                $(".cin").attr("class", "cin cx mx");
+                $(".sei").attr("class", "sei cx mx");
+            }
+            
+            else if( x == 2){
+                $(".uno").attr("class", "uno dx ax");
+                $(".due").attr("class", "due sx bx");
+                $(".tre").attr("class", "tre dx ax");
+                $(".qua").attr("class", "qua sx bx");
+                $(".cin").attr("class", "cin dx ax");
+                $(".sei").attr("class", "sei sx bx");
+            }
+            
+            else if( x == 3){
+                $(".uno").attr("class", "uno sx ax");
+                $(".due").attr("class", "due cx mx");
+                $(".tre").attr("class", "tre dx bx");
+                $(".qua").attr("class", "qua sx ax");
+                $(".cin").attr("class", "cin cx mx");
+                $(".sei").attr("class", "sei dx bx");
+            }
+            
+            else if( x == 4){
+                $(".uno").attr("class", "uno sx ax");
+                $(".due").attr("class", "due dx ax");
+                $(".tre").attr("class", "tre sx bx");
+                $(".qua").attr("class", "qua dx bx");
+                $(".cin").attr("class", "cin sx bx");
+                $(".sei").attr("class", "sei sx ax");
+            }
+            
+            else if( x == 5){
+                $(".uno").attr("class", "uno sx ax");
+                $(".due").attr("class", "due dx ax");
+                $(".tre").attr("class", "tre sx bx");
+                $(".qua").attr("class", "qua dx bx");
+                $(".cin").attr("class", "cin mx cx");
+                $(".sei").attr("class", "sei mx cx");
+            }
+            
+            else if( x == 6){
+                $(".uno").attr("class", "uno sx ax");
+                $(".due").attr("class", "due dx ax");
+                $(".tre").attr("class", "tre sx bx");
+                $(".qua").attr("class", "qua dx bx");
+                $(".cin").attr("class", "cin mx dx");
+                $(".sei").attr("class", "sei mx sx");
+            }
+                        
+        };
+                
+        
+        function getRandom() {
+            return Math.floor(Math.random() * 6) + 1 ;
+        }    
+            
+    </script>
+    
+</body>
+</html>

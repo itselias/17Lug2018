@@ -1,0 +1,78 @@
+
+
+
+/*
+
+.pianeta{
+    height: 20vh; width: 20vh;
+    border-radius: 100%;
+}
+
+#quadratoceleste2{
+    background-color: aqua;
+    width: 60vh; height: 60vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 100%;
+}
+
+#quadratoceleste{
+    width: 60vh; height: 60vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 100%;
+    
+}
+
+#sole{
+    background-color: yellow;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+#blu{
+    height: 10vh; width: 10vh;    
+    background-color: blue;
+    position: relative;
+    top: 50%; left: 80%;
+}
+
+#rosso{
+    height: 10vh; width: 10vh;    
+    background-color: red;
+    position: relative;
+    top: 50%; left: 90%;
+}
+
+#quadratoceleste.spin {
+    animation: spin 4s infinite linear;
+}
+
+#quadratoceleste2.spininverso {
+    animation: spininverso 4s infinite linear;
+}
+
+#quadratoceleste2.spin {
+    animation: spin 4s infinite linear;
+}
+
+@keyframes spin {
+    from{
+    transform: translate(-50%, -50%) rotate(0deg)   
+    }    to{
+    transform:translate(-50%, -50%) rotate(359deg)    
+    }}
+
+@keyframes spininverso {
+    from{
+    transform: translate(-50%, -50%) rotate(359deg)   
+    }
+    
+    to{
+    transform:translate(-50%, -50%) rotate(0deg)    
+    }}
+*/

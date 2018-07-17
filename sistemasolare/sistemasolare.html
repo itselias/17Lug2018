@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../sistemasolare/sistemasolare.css">
+    <style>
+    
+.pianeta{
+    height: 20vh; width: 20vh;
+    border-radius: 100%;
+}
+
+#quadratoceleste2{
+    background-color: aqua;
+    width: 80vh; height: 80vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 100%;
+    background-image: url(../sistemasolare/spazio.jpg);
+    background-size: cover;
+    
+}
+
+#quadratoceleste{
+    width: 70vh; height: 70vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 100%;
+    
+}
+
+#sole{
+    width: 35vh; height: 35vh;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background-image:url(../sistemasolare/sole.png);
+    background-size: contain;
+    animation: ruotasole 4s infinite linear;
+}
+
+
+#blu{
+    height: 30vh; width: 30vh;    
+    background-color: none;
+    position: relative;
+    top: 50%; left: 68%;
+    background-image: url(../sistemasolare/blu.png);
+    background-size: contain;
+}
+
+#rosso{
+    height: 15vh; width: 15vh;    
+    background-color: #ff5050;
+    position: relative;
+    top: 50%; left: 90%;
+    background-image: url(../sistemasolare/rosso.png);
+    background-blend-mode: exclusion;
+    background-size: 160%;
+    background-position: center;
+    
+}
+
+#quadratoceleste.spin {
+    animation: spin 4s infinite linear;
+}
+
+#quadratoceleste2.spininverso {
+    animation: spininverso 4s infinite linear;
+}
+
+#quadratoceleste2.spin {
+    animation: spin 4s infinite linear;
+}
+
+@keyframes spin {
+    from{
+    transform: translate(-50%, -50%) rotate(0deg)   
+    }    to{
+    transform:translate(-50%, -50%) rotate(359deg)    
+    }}
+
+@keyframes spininverso {
+    from{
+    transform: translate(-50%, -50%) rotate(359deg)   
+    }
+    
+    to{
+    transform:translate(-50%, -50%) rotate(0deg)    
+    }}
+    
+        
+@keyframes ruotasole {
+    from{
+        transform: translate(-50%, -50%) rotate(0deg)
+            
+    }            
+    to{
+        transform:translate(-50%, -50%) rotate(359deg) 
+    }    
+        
+}        
+        
+        
+    </style>
+    
+    
+  </head>
+  <body>
+ 
+ <div id="quadratoceleste2">
+    <div class="pianeta" id="blu"></div>  
+</div>
+ 
+
+
+<div id="quadratoceleste">
+    <div class="pianeta" id="rosso"></div>       
+</div>
+
+<div class="pianeta" id="sole"></div>                      
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          
+<script>
+      
+var stato = 0;
+
+$("#sole").on("click", function(){
+    
+    if(stato==0){
+        //allora devo andare nello tato 1  blu gira
+        $("#quadratoceleste").addClass("spin");
+        stato = 1;
+    } 
+    
+    else if(stato == 1) {
+        //
+        $("#quadratoceleste2").addClass("spininverso");
+    
+        stato = 2;
+    }
+    
+    else if(stato == 2) {
+        $("#quadratoceleste2").removeClass("spininverso");
+        $("#quadratoceleste2").addClass("spin");
+        
+        $("#quadratoceleste").removeClass("spin");        
+        $("#quadratoceleste").addClass("spin");
+        
+        stato = 3;
+    }
+ 
+    else if(stato == 3) {
+        stato = 0;
+        $("#quadratoceleste2").removeClass("spin");
+        $("#quadratoceleste2").removeClass("spininverso");
+        $("#quadratoceleste").removeClass("spin");
+        $("#quadratoceleste").removeClass("spininverso");
+
+        alert("Finite le animazioni! ");
+    }
+
+}) 
+      
+    </script>
+  
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio Due</title>
+    
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>    
+
+<style>
+
+    *{font-family: sans-serif; font-size: 10vh; color: white}
+    body{background-color: rgba(0, 0, 0, 0);
+    }
+
+    main{
+        background-color: rgba(0, 0, 0, 0.15);
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: 50%; left: 50%;
+        height: 90vh;
+        width: 90vh;
+        
+    }
+    
+    div{
+        transition: all 1s linear;
+
+    }
+    
+    .qino{
+        position: absolute;
+        width: 10vh;
+        height: 10vh;
+        text-align: center;
+    }
+    
+    #one{
+        background-color: yellow;
+    }
+    
+    #two{
+        background-color: palegreen;
+    }
+    
+    #three{
+        background-color: skyblue;
+    }
+    
+    #four{
+        background-color: darkorange;
+    }
+    
+    .alto{
+        top: 0%;
+    }
+    
+    .basso{
+        bottom: 0px;
+    }
+    
+    .sx{
+        left: 0%;
+    }
+    
+    .dx{
+        right: 0%;
+    }
+    
+    .ruota {
+        animation: rota 1s linear infinite;
+    }
+    
+    @keyframes rota {
+            from{
+            transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to{
+            transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    
+</style>        
+</head>
+
+<body>
+    <main>
+       <div id="one" class="qino alto sx">1</div>
+       <div id="two" class="qino alto dx">2</div>
+       <div id="three" class="qino basso sx">3</div>
+       <div id="four" class="qino basso dx">4</div>
+    </main>
+
+   
+<script>
+    var rotazione = false;
+    
+    setTimeout(function(){
+        
+    $("div").hover(function(){
+            if(rotazione == true){
+                $("main").removeClass("ruota");
+    }})
+   
+    },2000);
+    
+    
+    
+    $("#one").click(function() {
+
+            if ($("#one").hasClass("dx")){
+                $("main").addClass("ruota");
+                rotazione = true;                
+//                alert("l'uno è a dx rotation" + rotazione);
+            }
+        
+            else {
+                $("#one").toggleClass("sx dx");
+                $("#two").toggleClass("dx sx"); 
+//                alert("scambione rotation" + rotazione)
+            }});
+    
+    
+</script>    
+</body>
+</html>

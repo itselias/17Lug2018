@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">  </script>
+    <style>
+    
+        body{ background-color: coral; font-family: monospace; color: black; font-size: 10vh;}
+        
+    
+        #contenitore{
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vh; height: 70vh;
+            background-color: azure;
+            
+        }
+        
+        .quadratino{
+            position: absolute;
+            width: 10vh;
+            height: 10vh;
+            text-align: center;
+            align-content: center;
+            transition: .5s linear;
+        }
+
+        #uno{
+            background-color: aquamarine
+        }
+        
+        #due{
+            background-color:darkcyan;
+        }
+        
+        #tre{
+            background-color: dodgerblue
+        }
+        
+        #quattro{
+            background-color: darkturquoise;
+        }
+        
+        .alto{top: 0%;}
+        
+        .basso{bottom: 0%;}
+        
+        .dx{right: 0%;}
+        
+        .sx{left: 0%;}
+        
+        .centro {top: 50%; left: 50%; transform: translate(-50%, -50%)}
+        
+        .ruota {transform: translate(-50%, -50%); animation: ruota 3s infinite linear;}
+        
+        @keyframes ruota {
+            from {transform: translate(-50%, -50%) rotate(0deg); }
+            to {transform: translate(-50%, -50%) rotate(360deg); }
+            
+        }
+        
+    </style>
+</head>
+<body>
+
+  
+  <div id="contenitore">
+      
+      <div class="quadratino alto sx" id="uno">1</div>
+      <div class="quadratino alto dx" id="due">2</div>
+      <div class="quadratino basso sx" id="tre">3</div>
+      <div class="quadratino basso dx" id="quattro">4</div>
+      
+  </div>
+   
+   
+    
+        
+            
+<!--////////////////////////////////////////JS-->
+<script>
+    
+        window.onload = function() {
+            console.log("ciaone")
+        }
+        
+        $(".quadratino").click( function(){
+            if($(this).hasClass("ruota")){
+                $(this).removeClass("ruota")
+                $(this).removeClass("centro")
+            }
+            
+            else if($(this).hasClass("centro")){
+                $(this).addClass("ruota")
+            }
+
+            else {
+                $(this).addClass("centro")
+            }
+        })
+        
+        
+</script>    
+</body>
+</html>

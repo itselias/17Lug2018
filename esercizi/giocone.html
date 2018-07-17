@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
+    <script src="https://cdn.bootcss.com/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>    
+    <style>
+    
+        *{transition: 2s ease; }
+        
+        body{
+            background-color: none;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 5vmin;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+        
+        h1{
+            display:table-cell; 
+            vertical-align:middle
+        }
+        
+        .fulldim{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        
+        .nascosto{
+            opacity: 0;
+            pointer-events: none
+        }
+        
+        #gameover{
+            overflow: hidden;
+            left: 0%;
+            top: 0%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display:table;
+        }    
+        
+        #gameover p, #gameover a, #game p, {
+            
+            display: table; 
+            font-size: 5vmin;
+        }
+        
+        #gameover a{
+            background-color: rgba(255, 0, 0, 0.5);
+        }        
+        
+
+        
+        .textwrap{
+            pointer-events: none;
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%, 0);
+            top: 10vh;
+            color: white;
+/*            z-index: 1;*/
+        }
+        
+        .textwrap a{
+            pointer-events: auto;
+        }
+        
+
+        
+        #intro{
+            background-color: lightcoral;
+            
+        }
+        
+        
+        #game{
+            background-color: none;
+        }
+        
+        #punti span{
+            background-color: rgba(255, 255, 0, 0.5);
+        }
+        
+        #orbit{
+            position: relative;
+            width: 70vmin;
+            height: 50vmin;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .quadrato{
+            position: absolute;
+            height: 20vmin; width: 20vmin;
+            top: 50%;
+            text-align: center; 
+            display: table;
+            transform: translate(0%, -50%);
+        }
+        
+        .uno{
+            background-color: coral;
+            left: 0%;
+        }
+        
+        .due{
+            background-color: darkseagreen;
+            right: 0%;        
+        }
+        
+        .death{
+            background-color: grey;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .ruota{
+            animation: ruota 2s linear infinite;
+        }    
+        
+        
+        .onda{
+            animation: onda 2s linear alternate infinite;
+        }
+        
+
+        
+        @keyframes onda {
+            
+            from{left: 100%;}
+            
+            to{left: 0%;}
+        }
+        
+        @keyframes ruota {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg)
+            }
+            
+        to {
+            transform: translate(-50%, -50%) rotate(360deg)
+            }
+        }        
+        
+    </style>
+</head>
+<body>
+    
+    
+    <div id="game" class="fulldim">
+                      
+        <div id="orbit">
+            <div class="uno quadrato"><h1>P</h1></div>
+            <div class="due quadrato"><h1>H</h1></div>
+            <div class="quadrato death"><h1>K</h1></div>
+        </div>
+    
+        <div class="textwrap">
+            <p id="info">PREMI P PER INIZIARE</p>
+            <p id="timer">TIMER</p>    
+        </div>
+            
+    </div>   
+    
+    <div id="intro" class="fulldim nascosto">
+        
+    </div>
+
+
+    <div id="gameover" class="nascosto fulldim">
+      
+       <div class="textwrap">
+
+            <p id="final"> messaggio </p>
+            <p id="punti"> <span> punteggio </span> </p>
+                <br>
+                <hr>
+                <br>
+                <br>
+                <br>
+            <a onclick="location.reload();"> RIGGIOCACI </a>    
+
+        
+        </div>
+    </div>
+                
+                
+                <!--    JAVASCRITP-->
+    <script>
+    
+        var inc = 0;
+        var ref = 1000;
+        var tim = 0;
+        var gameon = false;
+        var intro = false;
+        var score = 0;
+        var hit = 0;
+        var elapsed = 0;
+    
+    function ruotaButt() {
+        
+        if ((tim == 0)&&(intro == true)){
+            
+            $("#orbit").addClass("ruota");
+            $(".death").addClass("onda");  
+            inc = 1;
+            ref = 100;
+            tim + 500;
+            gameon = true; 
+        }        
+
+    };
+        
+        
+    function messaggi(){
+        if (gameon == true){
+            $("#info").text("COLPISCI LA H // SEI MORTO SE COLPISCI LA K // TIENI QUESTO NUMERO PIù BASSO POSSIBILE:");
+        }
+    }    
+
+    function complimenti(){
+            $("#punti span").text( "HAI FATTO " + Math.floor( ((hit / elapsed)*1000) - tim ) + " PUNTI" );
+
+        if(hit => -150){
+            $("#final").text("MALE MALISSIMO");
+        }
+        else if(hit <= -5){
+            $("#final").text("MEH NON MALE DAI");
+        }
+    };
+
+            
+    $(".quadrato").click( function(){
+                
+        if($(this).hasClass("uno")){
+            $(this).addClass("nascosto");
+//            $("#timer").text(Math.abs(tim));
+//            counter();
+            tim = 3;
+            inc = -1;
+            intro = true;
+            timelapsed();
+
+        }
+        
+        else if($(this).hasClass("due") && (gameon == true)){
+            tim = tim - 3;
+//            $("#timer").text(Math.abs(tim));
+            counter();
+            hit ++;    
+        }
+        
+        else if ($(this).hasClass("death") && (gameon == true) ){
+            inc = 0;
+            $("#gameover").removeClass("nascosto")
+            
+            complimenti();
+        }
+        
+    });
+  
+    function timelapsed(){
+        elapsed ++;
+        setTimeout( timelapsed, ref );
+    }         
+        
+    function thick(){
+        tim = tim + inc;
+//        $("#timer").text(Math.abs(tim));
+        counter();
+        ruotaButt();
+        messaggi();
+        console.log("tim:" + tim + " hit:" + hit + " elapsed:" + elapsed);
+        
+        setTimeout( thick, ref );
+    }    
+       
+        
+    function counter(){
+        
+        if(tim >= 0){
+            $("#timer").text(Math.abs(tim));
+        }
+        
+        else{
+            $("#timer").text("0");
+        }
+        
+    }    
+        
+    window.onload = function(){
+        console.log("carico");
+        thick();
+    }        
+        
+        
+    </script>
+</body>
+</html>

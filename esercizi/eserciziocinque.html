@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">  </script>
+    
+    <title>eserciziocinque</title>
+    
+    
+    <style>
+        *{transition: 1s linear;}
+        
+        body{
+            background-color: whitesmoke;
+            color: white;
+            font-family: sans-serif;
+        }
+        
+        p{
+            position: absolute;
+            top: auto;
+            margin: 1vh;
+        }
+        
+        h1{
+
+            text-align: center;
+        }
+        
+/*JS LED*/
+
+        .status{            
+            position: absolute;
+            bottom: 3vh; left: 3vh;
+        }
+        .statuson{
+            background-color: greenyellow !important;
+        }
+/*JS LED*/
+        
+        .elemento{
+            position: absolute;
+            width: 25vh; height: 25vh;
+            transform: translate(-50%, -50%);
+            top: 50%; 
+            text-align: center;
+            display: table; 
+        }
+        
+        #verde{
+            background-color: darkseagreen;   
+        }
+        
+        #blu{
+            
+        }
+        
+        .cerchioblu{
+            border-radius: 100%;
+            background-color: skyblue;  
+        }
+        
+        .quadratorosso{
+            border-radius: 0%;
+            background-color: orangered;
+
+        }
+        .centrato{
+            left: 50%;
+        }
+        
+        .esci-dx{
+            left: 120vw;
+        }        
+        
+        .esci-sx{
+            left: -10%;
+        }
+        
+        
+        
+    </style>
+    
+</head>
+<body>
+    <div id="verde" class="elemento centrato"></div>
+    <div id="blu" class="elemento cerchioblu esci-dx"><h1>TIMER</h1></div>
+    
+<!--    LED STATO-->
+    <div id="flag" class="status" style="background-color: orangered"> <p>JS OFF</p></div>
+    
+    <script>
+
+        
+        
+        //FUNZIONE TRASFORMAZIONE
+
+        $("#verde").click( function(){
+            
+            $(this).removeClass("centrato").addClass("esci-dx");
+            $("#blu").removeClass("esci-dx").addClass("centrato");
+        })
+        
+        var time = 0;
+        var incr = 0;
+        var timerOn = false;
+        
+        $("#blu").click( function(){
+            if(timerOn == false){
+            
+            $(this).toggleClass("cerchioblu, quadratorosso");
+            
+            incr = 1;
+            timerOn = true;
+            console.log("timer is on_" + timerOn);
+            }
+            
+            else if(timerOn == true){
+            
+            $(this).toggleClass("cerchioblu, quadratorosso");
+            
+            incr = 2;
+            timerOn = true;
+            console.log("timer is on_" + timerOn);
+            }
+            
+        });
+        
+        function tempo(){
+            time = time + incr;
+            $("#blu h1").text(time);
+            setTimeout(tempo, 1000);
+        };
+        
+
+        //TEST JQUERY
+            window.onload = function(){
+                $("#flag").addClass("statuson");
+                $("#flag p").text("JS ON");
+                tempo();
+            };        
+        
+    </script>
+</body>
+</html>

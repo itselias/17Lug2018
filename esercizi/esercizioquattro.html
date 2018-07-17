@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio Quattro</title>
+    
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script> 
+
+<style>
+    
+    body{background-color: rgba(0, 0, 0, 0);
+        overflow: hidden;
+}
+    
+    #verde{
+        background-color: palegreen;
+        opacity: 0.5;
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: 50%; left: 50%;
+        height: 25vh; width: 25vh;
+        transition: 1s;
+    }
+    
+    #blu{
+        opacity: 1;
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: 50%; left: 50%;
+        height: 25vh; width: 25vh;
+        transition: 1s;
+    }
+    
+    .out-dx{
+        margin-left: 110%;
+    }
+    
+    .center {
+        margin-left: 0%;
+    }
+    
+    .out-sx{
+        margin-left: -110%;
+    } 
+    
+    .cerchio{
+        border-radius: 100%;
+        background-color: skyblue;
+        
+    }
+    .quadrato{
+        border-radius: 0%;
+        background-color: orangered;
+    }
+    
+    .gira{
+        animation: gira 1s infinite linear;
+    }
+    
+    @keyframes gira {
+        from{
+    transform: translate(-50%, -50%) rotate(0deg); }
+        
+        to{
+    transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }    
+    
+</style>
+
+</head>
+<body>
+
+    <main>
+        
+        <div id="verde" class=""></div>
+        <div id="blu" class="out-sx cerchio"></div>
+        
+    </main>    
+    
+    
+    
+    
+    <script>
+    
+    var mod = 0;
+        
+    $ ("#blu").click(function() {
+if ( mod == 0 ) {
+    console.log(mod);
+    $ (this).removeClass("cerchio");
+    $ (this).addClass("quadrato");    
+    mod = 1; 
+}       
+        
+else if ( mod == 1 ) {
+    console.log(mod);    
+    $ (this).addClass("gira");  
+    mod = 2;
+}       
+
+else if ( mod == 2 ) {
+    console.log(mod);
+    $ (this).removeClass("gira");
+    $ (this).toggleClass("out-sx");
+    $ ("#verde").removeClass ();
+    $ ("#verde").addClass("center");
+    mod = 0;
+
+} 
+        
+    });  
+        
+$ ("#verde").click(function(){
+    $ (this).addClass("out-dx");
+    $ (this).removeClass("center");
+    $ ("#blu").addClass ("in-sx")
+    $ ("#blu").removeClass ("out-sx")
+    });
+    
+
+        
+      
+        
+    </script>
+</body>
+</html>

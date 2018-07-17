@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio Tre</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>  
+  
+  <style>
+    *{font-family: sans-serif; font-size: 10vh; color: white}
+    
+    body{background-color: rgba(0, 0, 0, 0);
+    }
+      
+    div, main {
+        border-radius: 100%;
+      }  
+
+    main{
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: 50%; left: 50%;
+        height: 90vh;
+        width: 90vh;
+    }      
+    
+    #perRosso{
+        background-color: skyblue;
+        pointer-events: none;
+      }    
+      
+    #giallo{
+        background-color: orange;
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: 50%; left: 50%;
+        height: 25vh; width: 25vh;
+      }  
+      
+      #blu{
+        background-color: blue;  
+        position: absolute;
+        bottom: 55vh; left: 15vh;
+        height: 15vh; width: 15vh;
+      }
+      
+      #rosso{
+        background-color: red;  
+        position: absolute;
+        bottom: 15vh; left: 15vh;
+        height: 7vh; width: 7vh;
+      }
+      
+      .orbitF{
+        animation: orbit 1s linear infinite; 
+      }
+      
+      .orbitL{
+        animation: orbit 2s linear infinite; 
+      }      
+      
+      .orbitFR{
+        animation: orbitR 1s linear infinite; 
+      }
+      
+      .orbitLR{
+        animation: orbitR 2s linear infinite; 
+      }          
+      
+    @keyframes orbit{
+          from{
+        transform: translate(-50%, -50%) rotate(0deg);
+          }  
+          to{
+        transform: translate(-50%, -50%) rotate(360deg);
+          }
+      }
+      
+    @keyframes orbitR{
+          from{
+        transform: translate(-50%, -50%) rotate(-0deg);
+          }  
+          to{
+        transform: translate(-50%, -50%) rotate(-359deg);
+          }
+      }
+      
+      
+</style>
+  
+</head>
+<body>
+
+    <main id="perRosso">
+        <div id="rosso"></div>   
+    </main>      
+   
+    <main id="perBlu">
+        <div id="giallo"></div>
+        <div id="blu"></div>   
+    </main>                     
+
+<script>
+    
+  var  stato = 0;
+    
+$ ("#giallo").click(function() {
+
+if (stato == 0){
+    $ ("#perBlu").addClass("orbitF");
+    stato = 1;
+    console.log(stato -1);
+}
+
+    else if (stato == 1) {
+    $ ("#perRosso").addClass("orbitL");
+    stato = 2;
+    console.log(stato -1);        
+}
+    
+else if (stato == 2) {
+    $ ("#perRosso").addClass("orbitLR" );
+    $ ("#perRosso").removeClass("orbitL" );
+    $ ("#perBlu").addClass("orbitFR" );   
+    $ ("#perBlu").removeClass("orbitF" );       
+    stato = 3;
+    console.log(stato -1);    
+}    
+    
+else if (stato == 3) {
+    $ ("#perRosso").removeClass();
+    $ ("#perBlu").removeClass();   
+    stato = 0;
+    console.log(stato -1);    
+}
+    
+});
+    
+    
+</script>
+
+</body>
+</html>

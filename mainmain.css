@@ -1,0 +1,774 @@
+@font-face{
+    font-family: freak;
+    src: url(assets/freakgrotesk.otf)
+
+}
+
+
+
+* {
+    font-family: freak;
+    color: white;
+}
+
+body{
+    margin: 0px; padding: 0px;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: freak;
+    font-size: 3vmin;
+    font-weight: bold;
+    color: white;
+}
+
+h1 { 
+    font-family: freak;
+}
+
+p{
+    font-size: 2vmin;
+    font-family: sans-serif;
+}
+
+a{
+/*    color: white;*/
+}
+
+/*CLASSE PER PROVARE I JS*/
+aneri{
+    color: black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+*::selection {
+    -moz-user-select: -moz- grey;
+    -khtml-user-select:  grey;
+    -webkit-user-select:  grey;
+    -o-user-select:  grey;
+    user-select:  grey;
+}
+
+*::-moz-selection {
+  background: grey; /* Gecko Browsers */
+}
+
+#editable:focus {
+    outline:none;
+}
+
+.nascosto{
+    display: none;
+}
+
+scroll-container{
+    scroll-behavior: smooth;
+      overflow-y: scroll;
+}
+
+.lavoro a{
+    text-decoration: underline;
+}
+
+.item {
+    display: block;
+    transition:  0.5s ease-out    
+}
+
+.item a{
+    transition:  0.5s ease-out;
+
+}
+
+ .item:target {
+    margin-left:20vmin;
+    opacity: 1;
+    transition:  0.5s ease-out;
+}
+
+.allarga {
+    margin-left:20vmin;
+    opacity: 1;
+    -webkit-transition: margin-left 1s; /* Safari */
+    -webkit-transition-timing-function: linear; /* Safari */
+    transition: margin-left 1s;
+    transition-timing-function: linear;
+}
+
+.restringi {
+    margin-left:0vmin;
+    opacity: 1;
+    transition:all 0.5s ease-out;
+}
+
+#about::after{    /* ABOUT */
+    content: "Questo sito è stato scritto per l'esame di informatica, volevo che fosse un po' in stile brutale ma il più possibile funzionale e completo." "\2192 Per uscire da qua basta cliccare su QUIT!";
+    
+    opacity: 0;    
+    position:fixed;
+    pointer-events: none;
+    left: 26%;
+    top: 110%;
+    width: 60vmin;
+    margin-bottom: 5vw;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    color: #484848;
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;        
+}
+
+#about:target::after{
+    
+    pointer-events: none;
+    opacity: 1;    
+    position:fixed;
+    overflow: hidden;
+    left: 26%;
+    top: 18vw;
+    width: 60vmin;
+    margin-bottom: 5vw;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;              
+}
+
+#help::after{    /* HELP */
+    content: "\2192 Questo popup non funziona con JS, ma è generato con un ::after pesantemente stylato, gli altri invece sono collegamente con un soft-scroll, per gli altri è stato necessario usare una combinazione di JQ e CSS." "\2192 ci sono un po' di easter-egg" "\2192 Non ho usato bootstrap perchè non mi sembrava necessario con così pochi contenuti, ho aggiunto di media tag per far collassare il flexbox sotto una certa dimensione:" 
+    "\2192 Per uscire da qua basta cliccare su QUIT!"; 
+    
+    opacity: 0;    
+    position:fixed;
+    pointer-events: none;
+    left: 0%;
+    top: 18vw;
+    width: 60vmin;
+    margin-bottom: 5vw;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    color: #484848;    
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;    
+}
+
+#help:target::after{    
+    pointer-events: none;
+    opacity: 1;    
+    position:fixed;
+    overflow: hidden;
+    left: 20%;
+    top: 18vw;
+    width: 60vmin;
+    margin-bottom: 5vw;
+    padding: 5vw;
+    color: #484848;    
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;      
+    transition:all 0.5s ease-out;
+}
+
+#quit:target {
+    opacity: 0;
+}
+
+/* FINE EVIDENZIAMENTO*/
+
+#contenitore{
+    justify-content: space-between;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    background-size: 1800% 1800%;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    scroll-behavior: smooth;
+    
+    -webkit-animation: rainbow 18s ease infinite, spostamentoContenitore 1.4s 3.5s ease-out forwards;
+    -z-animation: rainbow 18s ease infinite, spostamentoContenitore 1.4s 3.5s ease-out forwards;
+    -o-animation: rainbow 18s ease infinite, spostamentoContenitore 1.4s 3.5s ease-out forwards;
+      animation: rainbow 18s ease infinite, spostamentoContenitore 1.4s 3.5s ease-out forwards;
+}
+
+#navigazione{
+    position: fixed;
+    padding-left: 5vmin;
+    padding-top: 5vmin; 
+    transition: 1s; 
+    cursor: grabbing;
+}
+
+#listaLavori{
+    display: flex;
+    flex-direction: column;
+/*    transition: 2s;*/
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;    
+}
+
+#moblogo::after { /* LOGO MOBILE */
+    display: none;
+    content: "";
+    text-align: center;
+    position: fixed;
+    margin-top: 5vw;
+    margin-left: 5vw;
+    width: 61vmin;
+    font-size: 40vmin;
+    width: 61vmin;
+    overflow: hidden;     
+    -webkit-animation: 3s digit 1s infinite;
+    -moz-animation: 3s digit 1s infinite;
+    -o-animation: 3s digit 1s infinite;
+    animation: 3s digit 1s infinite;
+}
+
+#navigazione::before { /* LOGO TIPO */
+    content: "MIAO.";
+    position: absolute;
+    margin-top: 1.8vh;
+    font-size: 5vmin;
+    -webkit-animation: 5s ruotaLogo  4s infinite;
+    -moz-animation: 5s ruotaLogo  4s infinite;
+    -o-animation: 5s ruotaLogo  4s infinite;
+    animation: 5s ruotaLogo  4s infinite;
+    overflow: hidden; 
+    transition: 3s;    
+}
+
+#listaLavori::before {   /* ORIZZONTALE */
+    content: "";
+    border-top: 0.8vmin solid white;   
+    border-bottom: 0.8vmin solid white;
+    height: 6vmin;
+    width: 100%;
+    margin-bottom: 1vmin;
+}
+
+#listaLavori::after {   /* VERTICALE */ 
+    content: "";  
+    position: absolute;
+    border-left: 0.8vmin solid white;
+    width: 1vmin;
+    height: 80%;
+    left: 17vmin;
+    top: 12vmin;
+    transition: 3s;
+}
+
+.lavori{
+    display: block;
+    position: absolute;
+    left: 30%;
+    margin-top: 20vmin;
+/*    height: 600%;*/
+    width: 60vw;
+}
+
+lavoro h1 {
+    font-size: 5vmin;
+}
+    
+.lavori h1,p,h2 {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+#alcentro {
+    -webkit-animation: spostamentoLavori linear 10s infinite forwards;
+    -moz-animation: spostamentoLavori linear 10s infinite forwards;
+    -o-animation: spostamentoLavori linear 10s infinite forwards;
+    animation: spostamentoLavori linear 10s infinite forwards;        
+}
+
+.lavoro{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10vmin;
+    overflow-y: scroll;
+    background-image: url(assets/bg-noise.gif);
+}
+
+.lavoro::before{
+    position: absolute;    
+    content: "";
+    margin-top: -2vw;
+    border-top: 0.8vmin solid white;   
+    height: 5vmin;
+    width: 100%;
+}
+
+/*
+#sitoframe{
+    resize: horizontal;
+    width: 100%;
+    height: 600px;
+}
+*/
+
+#sitoframe, #sciframe, #planetiframe, #codiceiframe, {
+    margin-top: 1vw;
+    align-self:center;
+}
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+#raccoglitore {
+    align-self:center;
+}
+
+#raccoglitore iframe{
+    background-color: transparent;
+
+/*    background: rgba(255, 255, 255, 0.1);*/
+    }
+
+#ll0 h2{
+    font-size: 15vmin;
+    margin-top: 0;
+    margin-bottom: 0;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    background-size: 1800% 1800%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: rainbow 18s ease infinite;
+    -z-animation: rainbow 18s ease infinite;
+    -o-animation: rainbow 18s ease infinite;
+    animation: rainbow 18s ease infinite;
+}
+
+#ll0 h2 span{
+    display: -moz-inline-stack;
+    display: inline-block; 
+    background-color: white;
+    -webkit-background-clip: text;
+    -webkit-animation: intermittenza 1.5s infinite;
+    -moz-animation: intermittenza 1.5s infinite;
+    -ms-animation: intermittenza 1.5s infinite;
+    -o-animation: intermittenza 1.5s infinite;
+    animation: intermittenza 1.5s infinite;
+}
+
+#ll0 h1{
+    margin-bottom: 1 vw;
+}
+
+#fliplogo{
+    display: -moz-inline-stack;
+    display: inline-block;    
+    -webkit-animation: 5s ruotaLogo  4s infinite;
+    -moz-animation: 5s ruotaLogo  4s infinite;
+    -o-animation: 5s ruotaLogo  4s infinite;
+    animation: 5s ruotaLogo  4s infinite;
+}
+
+#ll1 p span:hover{
+    color: pink;
+}
+
+#ll1 p span::after{
+    content: url(https://banner2.kisspng.com/20171219/eaa/egg-png-image-5a38ba7c2c7119.919054511513667196182.jpg);
+    position: absolute;
+    z-index: 2;
+    display: none;
+    zoom:-2.5;
+}
+
+#ll1 p span:hover::after{
+    display: block;
+}
+
+form input, input[type=text], select {
+    margin-left: 5vw; 
+    margin-bottom: 5vw;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-weight: bold;    
+    font-size: 2vmin;
+    font-style: inherit;
+}
+
+#ll6 {
+    overflow: hidden;
+}
+
+/* CLASSE GLITCH CHE METTO SU ELEMENTI "COMINGSOON" */
+.glitch {
+    position: relative;
+    zoom: 5.3;
+    color: black;
+    margin-left: 1vw;
+}
+
+.glitch:before {
+    
+    font-size: 3vmin;
+    color: white;
+  content: "COMINGSOON";
+  position: absolute;
+  left: -2px;
+  text-shadow: 3px 0 blue;
+  top: -5px;
+  color: black;
+  background: rgb(255, 255, 0);
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  -webkit-animation: noise-anim 2s infinite linear alternate-reverse;
+  -moz-animation: noise-anim 2s infinite linear alternate-reverse;
+  -o-animation: noise-anim 2s infinite linear alternate-reverse;
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+.glitch:after {
+    color: white;
+  content: "COMINGSOON";
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 red;
+  top: -5px;
+  color: black;
+  background: #ff0000;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+-webkit-animation: noise-anim-2 3s infinite linear alternate-reverse;
+-moz-animation: noise-anim-2 3s infinite linear alternate-reverse;
+-o-animation: noise-anim-2 3s infinite linear alternate-reverse;
+animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+/* CLASSI QUADRO CELESTE END */
+
+
+#introTitolo{
+    font-size: 5vmin;
+}
+
+#introCerchio {
+    width: 20vmin; height: 20vmin;
+    border-radius: 100%;    
+    transform-origin: -50% -50%;
+    margin: 0;
+    margin: auto;  
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    background-size: 1800% 1800%;
+
+    -webkit-animation: rainbow 18s ease infinite, spostamentoRuota 1.7s 3s ease forwards;
+    -z-animation: rainbow 18s ease infinite, spostamentoRuota 1.7s 3s ease forwards;
+    -o-animation: rainbow 18s ease infinite, spostamentoRuota 1.7s 3s ease forwards;
+      animation: rainbow 18s ease infinite, spostamentoRuota 1.7s 3s ease forwards;    
+    }
+
+
+#dascoprire, #dascoprire p{
+    position: fixed;
+    top: 100%;
+    color: black;
+    word-break: break-all;
+}
+
+#dascoprire::after{
+    content: url(https://banner2.kisspng.com/20171219/eaa/egg-png-image-5a38ba7c2c7119.919054511513667196182.jpg);
+    position: absolute;
+    left: 50%;
+    opacity: 0.5;
+    
+}
+#dascoprire::after:hover {
+    opacity: 1;
+
+}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+@-webkit-keyframes spostamentoRuota {
+    from{left: 0;}
+    to{left: -130%;}
+}
+@-moz-keyframes spostamentoRuota {
+    from{left: 0;}
+    to{left: -130%;}
+}
+@-o-keyframes spostamentoRuota {
+    from{left: 0;}
+    to{left: -130%;}
+}
+@keyframes spostamentoRuota { 
+    from{left: 0;}
+    to{left: -130%;}
+}
+
+@-webkit-keyframes spostamentoContenitore {
+    from{left: 100%;}
+    to{left: 0%;}
+}
+@-moz-keyframes spostamentoContenitore {
+    from{left: 100%;}
+    to{left: 0%;}
+}
+@-o-keyframes spostamentoContenitore {
+    from{left: 100%;}
+    to{left: 0%;}
+}
+@keyframes spostamentoContenitore { 
+    from{left: 100%;}
+    to{left: 0%;}
+}
+
+@-webkit-keyframes spostamentoLavori {
+    from{width: 0vw;}
+    to{width: 100vw;}
+}
+@-moz-keyframes spostamentoLavori {
+    from{width: 0vw;}
+    to{width: 100vw;}
+}
+@-o-keyframes spostamentoLavori {
+    from{width: 0vw;}
+    to{width: 100vw;}
+}
+@keyframes spostamentoLavori { 
+    from{width: 0vw;}
+    to{width: 100vw;}
+}
+
+
+@-webkit-keyframes ruotaLogo {
+     0%{
+        transform: rotate3d(0, 0, 0, 0deg);}    
+    50%{        
+        transform: rotate3d(1, 1, 1, 360deg);}    
+    
+    100%{        
+        transform: rotate3d(1, 1, 1, 360deg);}         
+}
+@-moz-keyframes ruotaLogo {
+     0%{
+        transform: rotate3d(0, 0, 0, 0deg);}    
+    50%{        
+        transform: rotate3d(1, 1, 1, 360deg);}    
+    
+    100%{        
+        transform: rotate3d(1, 1, 1, 360deg);}         
+}
+@keyframes ruotaLogo {
+     0%{
+        transform: rotate3d(0, 0, 0, 0deg);}    
+    50%{        
+        transform: rotate3d(1, 1, 1, 360deg);}    
+    
+    100%{        
+        transform: rotate3d(1, 1, 1, 360deg);}         
+}
+
+
+@-webkit-keyframes intermittenza{
+    0%{opacity: 1;    }
+    49%{opacity: 1;    }
+    51%{opacity: 0;    }
+    100%{opacity: 0;    }
+}
+@-moz-keyframes intermittenza {
+    0%{opacity: 1;    }
+    49%{opacity: 1;    }
+    51%{opacity: 0;    }
+    100%{opacity: 0;    }
+}
+@keyframes intermittenza{
+    0%{opacity: 1;    }
+    49%{opacity: 1;    }
+    51%{opacity: 0;    }
+    100%{opacity: 0;    }
+}
+
+@-webkit-keyframes digit {
+    
+    0% {content: "M"}
+    35% {content: "I"}
+    60% {content: "A"}
+    80% {content: "O"}
+    100% {content: "O."}
+}
+@-moz-keyframes digit {
+    
+    0% {content: "M"}
+    35% {content: "I"}
+    60% {content: "A"}
+    80% {content: "O"}
+    100% {content: "O."}   
+}
+@keyframes digit {
+    
+    0% {content: "M"}
+    35% {content: "I"}
+    60% {content: "A"}
+    80% {content: "O"}
+    100% {content: "O."}        
+}
+
+
+/* MEDIA QUERY SCHERMO PICCOLO*/
+/* MEDIA QUERY SCHERMO PICCOLO*/
+/* MEDIA QUERY SCHERMO PICCOLO*/
+/* MEDIA QUERY SCHERMO PICCOLO*/
+/* MEDIA QUERY SCHERMO PICCOLO*/
+
+
+@media only screen and (max-width: 450px) {
+    
+    p {
+        font-size: 3vmin;
+    }    
+    
+    #moblogo::after { /* LOGO MOBILE */
+    display: block;
+    }
+    
+    .lavori{
+    left: 0%;
+    margin-top: 55vmin;
+    height: 400%;
+    width: 100%;
+    background-color: none;
+    background-image: none;
+    transition: 1s;
+    }
+
+    #navigazione{
+    position: fixed;
+    padding-left:70vmin;
+    padding-right: 5vmin;
+    padding-top: 5vmin;  
+    transition: 1s;
+    }
+    
+    #listaLavori::after {   /* VERTICALE */ 
+    content: "";  
+    position: absolute;
+    border-left: 0.8vmin solid white;
+    width: 1vmin;
+    height: 100%;
+    left: 65vmin;
+    top: 5vmin;
+    transition: 3s;
+    }
+
+    #about::after{    /* ABOUT */
+    
+    opacity: 0;    
+    position:fixed;
+    pointer-events: none;
+    left: 10%;
+    top: 110%;
+    width: 30vmin;
+    height: 20vw;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    color: #484848;
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;        
+}
+
+    #about:target::after{
+  
+    pointer-events: none;
+    opacity: 1;    
+    position:fixed;
+    overflow: hidden;
+    left: 10%;
+    top: 18vw;
+    width: 30vmin;
+    height: 20vw;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;              
+}
+    
+    #help::after{
+
+    pointer-events: none;
+    opacity: 1;    
+    position:fixed;
+    overflow: hidden;
+    left: -110%;
+    top: 18vw;
+    width: 47vmin;
+    margin-bottom: 5vmin;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    color: rgb(90, 90, 90);    
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;        
+    }
+    
+    #help:target::after{
+
+    opacity: 1;    
+    position:fixed;
+    overflow: hidden;
+    left: 0%;
+    top: 18vw;
+    width: 47vmin;
+    margin-bottom: 5vmin;
+    transition:all 0.5s ease-out;
+    padding: 5vw;
+    color: rgb(90, 90, 90);    
+    background-image: url(assets/bg-noise.gif);
+    background-size: 40%;        
+    }
+
+    
+} /* PARENTESI FINALE QUERY*/
+

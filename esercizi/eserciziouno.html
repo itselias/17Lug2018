@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>esercizio uno</title>
+    
+    <style>
+        
+        body{
+            background-color: rgba(0, 0, 0, 0);
+            margin: 0;
+        }
+    
+        main{
+            position: absolute;
+            background: rgba(0, 0, 0, 0);            
+            width: 90%;
+            height: 90%;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;            
+            
+        }
+        
+        
+        .quadrato{
+            background: white;
+            color: white;
+/*
+            overflow: auto;            
+            resize: both;
+*/
+            width: 50vh;
+            height: 50vh;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transition:0.5s;
+        }
+        
+        .quadratino{
+            background: yellow;
+            opacity: 0;
+/*
+            overflow: auto;            
+            resize: both;
+*/
+            width: 20vh;
+            height: 20vh;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transition:0.5s;
+            
+        }
+        
+        
+        .compare{
+            opacity: 1;
+            transition 0.5s;
+        }
+        
+        .ruota{
+            transform: translate(-50%, -50%) rotate(-225deg);
+            transition: 0.5s;
+        }
+        
+        .orario{
+            animation: orario 5s linear infinite ;
+            
+            transition: 0.5s;
+            
+        }
+        
+        .antiorario{
+            animation: antiorario 2.5s linear infinite ;
+            transition: 0.5s;
+        }
+        
+        @keyframes orario {
+            from{
+            transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to{
+            transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
+        @keyframes antiorario {
+            from{
+            transform: translate(-50%, -50%) rotate(360deg);
+            }
+            to{
+            transform: translate(-50%, -50%) rotate(0deg);
+            }
+        }        
+        
+    </style>
+</head>
+<body>
+    
+    <main>
+        
+        <div class="quadrato"> <div class="quadratino"></div></div>
+          
+    </main>
+    
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>    
+<script>    
+    
+$( ".quadrato" ).click(function(){
+                       
+    if ($(".quadratino").hasClass("compare")) {
+        $( ".quadrato").addClass("orario");
+        $( ".quadratino").addClass("antiorario");    
+        console.log("ROTANTI");
+    }    
+
+    else if ($(".quadrato").hasClass("ruota")) {
+        $(".quadratino").addClass("compare")  
+        console.log("IF HAS CLASS RUOTA");
+    }    
+
+     else {
+        $( ".quadrato").addClass("ruota");
+        console.log("ruotato inizio");
+     }
+
+});
+    
+//    
+    
+    
+    
+    
+//    if($(".quadrato").hasClass("ruota")){
+//        alert("IF HAS CLASS RUOTA");
+//        $(".quadratino").addClass("compare");
+//    }
+//
+//    else if($(.quadratino).hasClass("compare")){
+//        alert("FAI ANIMAZIONI ROTAZIONI");
+//    } 
+//    
+//    else {
+//        $( ".quadrato").addClass("ruota");
+//
+//    }                   
+//          
+    
+    
+</script>
+</body>
+</html>
